@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+
+<!-- Library Search Section -->
+<section class="bg-blue-50 py-12 ">
+  <div class="max-w-4xl mx-auto text-center pt-10">
+    <h2 class="text-3xl font-bold text-blue-900 mb-6">Search the Library Catalog</h2>
+    <p class="text-gray-700 mb-8">
+      Find books, journals, research papers, and more from our extensive collection.
+    </p>
+    <form class="flex justify-center">
+      <input type="text" placeholder="Search by title, author, or keyword"
+        class="w-full max-w-lg px-4 py-3 rounded-l-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600">
+      <button class="px-6 py-3 bg-blue-600 text-white rounded-r-lg hover:bg-blue-700 focus:outline-none">
+        Search
+      </button>
+    </form>
+  </div>
+</section>
+
+<!-- Library Section with Categories and Books -->
+<section class="py-16 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <!-- Left Side: Categories (Fixed) -->
+      <div class="lg:col-span-2 bg-white p-6 -ml-[10%] rounded-lg shadow-xl sticky top-0 h-screen overflow-y-auto "
+        style="overflow-x: hidden;">
+        <h2 class="text-2xl font-semibold text-teal-700 mb-6"><a href="{% url 'books' %}">Categories</a></h2>
+        <ul class="space-y-4">
+          {% for cat in categorys%}
+          <li><a href="{% url 'filter_category' cat.slug %}" class="text-md text-gray-800 hover:text-teal-600 transition duration-300">{{cat.name}}</a></li>
+
+          {% endfor %}
+        </ul>
+      </div>
+
+
+      <!-- Right Side: Books -->
+      <div class="lg:col-span-9 bg-white p-6">
+        <h2 class="text-3xl font-bold text-blue-800 mb-8">Recommended Books</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4  gap-8">
+          <!-- Book Item -->
+
+          {% for book in books%}
+          <div
+            class="relative p-6 rounded-lg text-sm  transition duration-300 ease-in-out transform cursor-pointer group">
+            <!-- Card Content -->
+            <div class="group-hover:opacity-20">
+              <img src="{{ book.image.url }}" alt="Book Title" class="w-full h-48 object-cover rounded-md mb-4">
+              <h3 class="text-md font-semibold text-gray-800 mb-2">{{ book.title }}</h3>
+              <p class="text-gray-600">{{ book.description|truncatechars:10 }}</p>
+              <p class="text-teal-600 font-semibold mt-2">
+                <i class="fas fa-coins text-yellow-500"></i> {{ book.price }}
+              </p>
+            </div>
+            <!-- Hover Effect: Background Color and Content Display -->
+            <div
+              class="absolute inset-0 bg-gray-300 opacity-0 rounded-lg group-hover:opacity-50 transition-opacity duration-300 border-2 border-gray-400">
+            </div>
+
+            <a href="{% url 'books_details' book.id%}">
+              <div
+                class="absolute inset-0 flex flex-col justify-center items-center text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div class="text-center">
+                  <p class="text-lg font-semibold text-blue-900">More Details</p>
+                  <button
+                    class="absolute bottom-0 left-0 px-6 py-2 w-full bg-teal-600 text-white rounded-b-lg hover:bg-teal-700 transition duration-300">View
+                    Book</button>
+                </div>
+              </div>
+            </a>
+
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+<style>
+  /* Thinner and left-side scrollbar */
+  .lg\:col-span-2::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .lg\:col-span-2::-webkit-scrollbar-thumb {
+    background-color: #ffffffe1;
+    /* Teal color */
+    border-radius: 10px;
+  }
+
+  .lg\:col-span-2::-webkit-scrollbar-track {
+    background: #494949c7;
+  }
+
+  /* Prevent text alignment from changing */
+  .lg\:col-span-2 {
+    direction: ltr;
+    /* Ensure text stays left-aligned */
+  }
+</style>
+
+{% endblock %}

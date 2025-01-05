@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="min-h-screen bg-gray-50 py-12 px-6">
+    <!-- Profile Card -->
+    <div class="max-w-7xl mx-auto bg-white p-8 rounded-lg shadow-lg">
+      <div class="flex items-center space-x-8 mb-10">
+        <div class="w-24 h-24 rounded-full bg-gray-300 flex items-center justify-center">
+          <span class="text-4xl text-white">U</span> <!-- Placeholder for user profile image -->
+        </div>
+        <div>
+          <h2 class="text-3xl font-semibold text-gray-800">John Doe</h2>
+          <p class="text-gray-500">johndoe@example.com</p>
+          <p class="text-gray-500 mt-2">Joined on: January 2021</p>
+          <div class="mt-4 flex items-center space-x-4">
+            <div class="bg-teal-500 text-white px-4 py-2 rounded-full">Coins: 150</div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Tabs for Navigation -->
+      <div class="flex space-x-6 mb-8">
+        <button class="text-lg font-semibold text-teal-500 hover:text-teal-700 transition duration-300">
+          Profile Info
+        </button>
+        <button class="text-lg font-semibold text-gray-600 hover:text-teal-500 transition duration-300">
+          Purchase History
+        </button>
+      </div>
+      
+      <!-- Profile Content -->
+      <div>
+        <!-- Personal Info Section -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-8">
+          <div class="bg-gray-100 p-6 rounded-lg shadow-md">
+            <h3 class="text-2xl font-semibold text-gray-800 mb-4">Personal Information</h3>
+            <ul class="space-y-4 text-lg">
+              <li class="flex justify-between"><span class="font-medium text-gray-600">Full Name:</span> <span>John Doe</span></li>
+              <li class="flex justify-between"><span class="font-medium text-gray-600">Email:</span> <span>johndoe@example.com</span></li>
+              <li class="flex justify-between"><span class="font-medium text-gray-600">Phone:</span> <span>+1234567890</span></li>
+              <li class="flex justify-between"><span class="font-medium text-gray-600">Address:</span> <span>1234 Street, City, Country</span></li>
+            </ul>
+          </div>
+          
+          <!-- Coin Balance Section -->
+          <div class="bg-gray-100 p-6 rounded-lg shadow-md">
+            <h3 class="text-2xl font-semibold text-gray-800 mb-4">Coin Balance</h3>
+            <p class="text-lg text-gray-600">You currently have <span class="font-bold text-teal-500">150 Coins</span> available.</p>
+            <div class="mt-4">
+              <button class="bg-teal-500 text-white px-6 py-3 rounded-full hover:bg-teal-600 transition duration-300">
+                Add Coins
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Book Tracking Section -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-8">
+          <!-- Books Purchased Section -->
+          <div class="bg-gray-100 p-6 rounded-lg shadow-md">
+            <h3 class="text-2xl font-semibold text-gray-800 mb-4">Books Purchased</h3>
+            <p class="text-lg text-gray-600">You have purchased <span class="font-bold text-teal-500">12 Books</span> so far.</p>
+          </div>
+          
+          <!-- Books Returned Section -->
+          <div class="bg-gray-100 p-6 rounded-lg shadow-md">
+            <h3 class="text-2xl font-semibold text-gray-800 mb-4">Books Returned</h3>
+            <p class="text-lg text-gray-600">You have returned <span class="font-bold text-teal-500">5 Books</span>.</p>
+          </div>
+          
+          <!-- Books Pending for Return Section -->
+          <div class="bg-gray-100 p-6 rounded-lg shadow-md">
+            <h3 class="text-2xl font-semibold text-gray-800 mb-4">Books Pending for Return</h3>
+            <p class="text-lg text-gray-600">You have <span class="font-bold text-teal-500">3 Books</span> pending for return.</p>
+          </div>
+        </div>
+        
+        <!-- Purchase History Section -->
+        <div class="bg-white p-6 rounded-lg shadow-md">
+          <h3 class="text-2xl font-semibold text-gray-800 mb-4">Purchase History</h3>
+          <table class="min-w-full table-auto">
+            <thead>
+              <tr>
+                <th class="px-4 py-2 text-left text-gray-600">Book Title</th>
+                <th class="px-4 py-2 text-left text-gray-600">Date</th>
+                <th class="px-4 py-2 text-left text-gray-600">Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Example Purchase 1 -->
+              <tr class="border-t">
+                <td class="px-4 py-2 text-gray-700">The Great Gatsby</td>
+                <td class="px-4 py-2 text-gray-700">2024-12-25</td>
+                <td class="px-4 py-2 text-gray-700">$15</td>
+              </tr>
+              <!-- Example Purchase 2 -->
+              <tr class="border-t">
+                <td class="px-4 py-2 text-gray-700">Introduction to Algorithms</td>
+                <td class="px-4 py-2 text-gray-700">2024-11-10</td>
+                <td class="px-4 py-2 text-gray-700">$30</td>
+              </tr>
+              <!-- Example Purchase 3 -->
+              <tr class="border-t">
+                <td class="px-4 py-2 text-gray-700">Python Programming</td>
+                <td class="px-4 py-2 text-gray-700">2024-10-05</td>
+                <td class="px-4 py-2 text-gray-700">$25</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+{%endblock %}
