@@ -13,6 +13,11 @@ class RegistrationView(FormView):
     form_class = RegistraionForm
     success_url = reverse_lazy('home')
 
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return redirect('home')
+        return super().dispatch(request, *args, **kwargs)
+
     def form_valid(self, form):
         user = form.save()
         login(self.request, user)
@@ -20,10 +25,14 @@ class RegistrationView(FormView):
 
 class UserLoginView(LoginView):
     template_name = 'accounts/login.html'
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return redirect('home')
+        return super().dispatch(request, *args, **kwargs)
     def get_success_url(self):
         return reverse_lazy('home')
 
 def user_logout(request):
     if request.user.is_authenticated:
         logout(request) 
-    return redirect('login')
+    return redirect('home')

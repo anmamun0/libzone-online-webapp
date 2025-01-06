@@ -10,7 +10,7 @@
             <div class="hidden md:flex space-x-4">
                 {% if user.is_authenticated %}
                 <a href="{% url 'home' %}" class="hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Home</a>
-                <a href="/books" class="hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Books</a>
+                <a href="{%url 'books' %}" class="hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Books</a>
                 <a href="/members" class="hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Members</a>
                 <a href="/transactions" class="hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Transactions</a>
                 <a href="/notifications" class="hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Notifications</a>
@@ -30,6 +30,8 @@
                 </div>
                 {% else %}
                 <!-- Links for Unauthenticated Users -->
+                <a href="{%url 'books' %}" class="hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Books</a>
+
                 <a href="{% url 'login' %}" class="hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Login</a>
                 <a href="{% url 'register' %}" class="hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Register</a>
                 {% endif %}

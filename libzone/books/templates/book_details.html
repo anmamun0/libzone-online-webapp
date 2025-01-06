@@ -10,7 +10,7 @@
             <div class="col-span-9   p-6 rounded-lg   ">
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
                     <!-- Left Side: Book Image -->
-                    <div class="bg-white p-2 rounded-lg flex flex-col items-center   h-full">
+                    <div class="bg-white p-2 rounded-lg flex flex-col items-center  justify-center   h-full">
                         <img src="{{book.image.url}}" alt="Book Cover"
                             class="w-64 h-auto rounded-md mb-4">
                         <a href="#"
@@ -24,27 +24,29 @@
 
                     <!-- Right Side: Book Info -->
                     <div class="bg-white p-6 rounded-lg text-sm flex flex-col justify-between ">
-                        <h1 class="text-xl font-extrabold text-gray-900 mb-4">{{book.title}}</h1>
-                        <p class="text-md text-gray-600 mb-6">{{book.author}}</p>
+                        <h1 class="text-lg font-extrabold text-gray-900 mb-4">{{book.title}}</h1>
+                        <p class="text-md text-gray-600 mb-4">by {{book.author}}</p>
 
                         <!-- Book Description -->
                         <div class="mb-6">
-                            <h3 class="text-sm font-semibold text-gray-800 mb-2">Description</h3>
+                            <h3 class="text-sm font-semibold text-gray-800  ">Description</h3>
                             <p class="text-gray-600">{{book.description}}
                             </p>
                         </div>
 
                         <!-- Book Details -->
-                        <div class="space-y-4">
+                        <div class="space-y-2">
                             <div class="flex justify-between">
                                 <span class="font-semibold text-gray-700">ISBN:</span>
                                 <span class="text-gray-600">{{book.isbn}}</span>
                             </div>
                             <div class="flex justify-between">
                                 <span class="font-semibold text-gray-700">Category:</span>
-                                {% for cat in book.category.all%}
-                                    <span class="text-gray-600">{{cat.name}}</span> 
-                                {% endfor %}
+                                <div>
+                                    {% for cat in book.category.all %}
+                                        <span class="text-gray-600  text-xs">{{cat.name}},</span> 
+                                    {% endfor %}
+                                </div>
                             </div>
                             <div class="flex justify-between">
                                 <span class="font-semibold text-gray-700">Price:</span>
@@ -57,13 +59,13 @@
                         </div>
 
                         <!-- Buttons Section -->
-                        <div class="mt-6 flex space-x-4">
+                        <div class="mt-6 flex space-x-4 ">
                             <a href="#"
-                                class="inline-block px-6 py-3 bg-teal-600 text-white  font-medium rounded-lg shadow-md hover:bg-teal-700 transition duration-300">
+                                class="inline-block px-6 py-3 bg-cyan-600 text-white text-sm font-medium rounded-lg shadow-md hover:bg-teal-700 transition duration-300">
                                 Add to Cart
                             </a>
                             <a href="#"
-                                class="inline-block px-6 py-3 bg-gray-300 text-gray-800 font-medium rounded-lg shadow-md hover:bg-gray-400 transition duration-300">
+                                class="inline-block px-6 py-3 bg-gray-300 text-gray-800 text-sm  font-medium rounded-lg shadow-md hover:bg-gray-400 transition duration-300">
                                 View Reviews
                             </a>
                         </div>
@@ -72,54 +74,27 @@
             </div>
 
             <!-- Right Side: Related Books (Fixed at the Top Right) -->
-            <div class="col-span-3 lg:sticky text-sm lg:top-16   p-6 rounded-lg  w-full">
+            <div class="col-span-3 lg:sticky text-sm lg:top-16   p-6 rounded-lg  w-full  items-center  justify-center ">
+                
                 <h2 class="text-2xl font-semibold text-gray-900 mb-6">Related Books</h2>
-                <div class="space-y-6">
+                <div class="space-y-6 space-x-2 my-auto">
                     <!-- Related Book 1 -->
-                    <div class="flex space-x-4">
-                        <img src="https://via.placeholder.com/60x90" alt="Book Cover"
-                            class="w-16 h-16 object-cover rounded-md shadow-sm">
-                        <div class="flex-1">
-                            <h3 class="text-md font-semibold text-gray-900">Book Title 1</h3>
-                            <p class="text-gray-600">by Author Name</p>
-                            <p class="text-teal-600 text-sm mt-2">See Details</p>
+                     {% for related_book in related_books%}
+                     <a href="{% url 'books_details' related_book.id%}">
+                        <div class="flex space-x-4">
+                            <img src="{{related_book.image.url}}" alt="Book Cover"
+                                class="w-16 h-16 object-cover rounded-md shadow-sm">
+                            <div class="flex-1 items-center my-auto">
+                                <h3 class="text-xs font-semibold text-gray-900 hover:text-cyan-600 transition duration-500">{{related_book.title|truncatechars:'20'}}</h3>
+                                <p class="text-xs  text-gray-600">by {{related_book.author}}</p> 
+                            </div>
                         </div>
-                    </div>
-
-                    <!-- Related Book 2 -->
-                    <div class="flex space-x-4">
-                        <img src="https://via.placeholder.com/60x90" alt="Book Cover"
-                            class="w-16 h-16 object-cover rounded-md shadow-sm">
-                        <div class="flex-1">
-                            <h3 class="text-md font-semibold text-gray-900">Book Title 2</h3>
-                            <p class="text-gray-600">by Author Name</p>
-                            <p class="text-teal-600 text-sm mt-2">See Details</p>
-                        </div>
-                    </div>
-
-                    <!-- Related Book 3 -->
-                    <div class="flex space-x-4">
-                        <img src="https://via.placeholder.com/60x90" alt="Book Cover"
-                            class="w-16 h-16 object-cover rounded-md shadow-sm">
-                        <div class="flex-1">
-                            <h3 class="text-md font-semibold text-gray-900">Book Title 3</h3>
-                            <p class="text-gray-600">by Author Name</p>
-                            <p class="text-teal-600 text-sm mt-2">See Details</p>
-                        </div>
-                    </div>
-
-                    <!-- Related Book 4 -->
-                    <div class="flex space-x-4">
-                        <img src="https://via.placeholder.com/60x90" alt="Book Cover"
-                            class="w-16 h-16 object-cover rounded-md shadow-sm">
-                        <div class="flex-1">
-                            <h3 class="text-md font-semibold text-gray-900">Book Title 4</h3>
-                            <p class="text-gray-600">by Author Name</p>
-                            <p class="text-teal-600 text-sm mt-2">See Details</p>
-                        </div>
-                    </div>
+                    </a>
+                     {% endfor %}
+                     
                 </div>
             </div>
+            
         </div>
     </section>
 
@@ -127,76 +102,38 @@
 
     <section class="py-10 px-6 lg:px-8 relative mx-10 text-sm">
         <!-- Related Books Section -->
-        <div class="mt-4 bg-white p-8 rounded-lg shadow-md">
-            <h2 class="text-2xl font-semibold text-gray-900 mb-6">Related Books</h2>
+        <div class="mt-8 bg-white p-8 rounded-lg shadow-md">
+            <h2 class="text-2xl font-semibold text-gray-900 mb-6">Similar Category eBooks</h2>
 
             <!-- Slider Container -->
             <div class="relative">
                 <div class="related-books-slider gap-8 slick-slider">
                     <!-- Book 1 -->
-                    <div class="bg-white rounded-lg mx-4 shadow-md overflow-hidden">
-                        <img src="https://via.placeholder.com/200x300" alt="Book Cover"
-                            class="w-full h-48 object-cover">
-                        <div class="p-4">
-                            <h3 class="text-md font-semibold text-gray-900">Book Title 1</h3>
-                            <p class="text-gray-600">by Author Name</p>
-                            <p class="text-teal-600 mt-2">See Details</p>
+                    {% for book in similar_category_books%}
+                    <a href="{% url 'books_details' book.id %}">
+                    
+                        <div class="bg-white rounded-lg mx-4 shadow-md overflow-hidden items-center text-center ">
+                            <img src="{{book.image.url}}" alt="Book Cover" class=" h-48 object-cover m-auto">
+                            <div class="p-4">
+                                <h3 class="text-md font-semibold text-gray-900 hover:text-cyan-600 transition duration-500">{{book.title}}
+                                </h3>
+                                <p class="text-gray-600">by {{book.author}}</p>
+                            </div>
                         </div>
-                    </div>
+                    </a>
 
-                    <!-- Book 2 -->
-                    <div class="bg-white rounded-lg mx-4 shadow-md overflow-hidden">
-                        <img src="https://via.placeholder.com/200x300" alt="Book Cover"
-                            class="w-full h-48 object-cover">
-                        <div class="p-4">
-                            <h3 class="text-md font-semibold text-gray-900">Book Title 2</h3>
-                            <p class="text-gray-600">by Author Name</p>
-                            <p class="text-teal-600 mt-2">See Details</p>
-                        </div>
-                    </div>
-
-                    <!-- Book 3 -->
-                    <div class="bg-white rounded-lg mx-4 shadow-md overflow-hidden">
-                        <img src="https://via.placeholder.com/200x300" alt="Book Cover"
-                            class="w-full h-48 object-cover">
-                        <div class="p-4">
-                            <h3 class="text-md font-semibold text-gray-900">Book Title 3</h3>
-                            <p class="text-gray-600">by Author Name</p>
-                            <p class="text-teal-600 mt-2">See Details</p>
-                        </div>
-                    </div>
-
-                    <!-- Book 4 -->
-                    <div class="bg-white rounded-lg mx-4 shadow-md overflow-hidden">
-                        <img src="https://via.placeholder.com/200x300" alt="Book Cover"
-                            class="w-full h-48 object-cover">
-                        <div class="p-4">
-                            <h3 class="text-md font-semibold text-gray-900">Book Title 4</h3>
-                            <p class="text-gray-600">by Author Name</p>
-                            <p class="text-teal-600 mt-2">See Details</p>
-                        </div>
-                    </div>
-                    <!-- Book 4 -->
-                    <div class="bg-white rounded-lg mx-4 shadow-md overflow-hidden">
-                        <img src="https://via.placeholder.com/200x300" alt="Book Cover"
-                            class="w-full h-48 object-cover">
-                        <div class="p-4">
-                            <h3 class="text-md font-semibold text-gray-900">Book Title 4</h3>
-                            <p class="text-gray-600">by Author Name</p>
-                            <p class="text-teal-600 mt-2">See Details</p>
-                        </div>
-                    </div>
+                    {% endfor %}  
                 </div>
 
                 <!-- Left Angle Button -->
                 <button
-                    class="absolute top-1/2 left-0 transform -translate-y-1/2 bg-teal-600 text-white w-12 h-12 rounded-full flex justify-center items-center rotate-45 hover:bg-teal-700 focus:outline-none z-10 slick-prev">
+                    class="absolute top-1/2 left-0 transform -translate-y-1/2 bg-gray-500 text-white w-12 h-12 rounded-full flex justify-center items-center rotate-0 hover:bg-gray-600 focus:outline-none z-10 slick-prev">
                     ‹
                 </button>
 
                 <!-- Right Angle Button -->
                 <button
-                    class="absolute top-1/2 right-0 transform -translate-y-1/2 bg-teal-600 text-white w-12 h-12 rounded-full flex justify-center items-center -rotate-45 hover:bg-teal-700 focus:outline-none z-10 slick-next">
+                    class="absolute top-1/2 right-0 transform -translate-y-1/2 bg-gray-500 text-white w-12 h-12 rounded-full flex justify-center items-center   hover:bg-gray-600 focus:outline-none z-10 slick-next">
                     ›
                 </button>
             </div>
@@ -208,63 +145,43 @@
     <section class="py-16 px-6 lg:px-8 relative mx-10 text-sm">
         <!-- Book Reviews Section -->
         <div class="mt-6 bg-white p-8 rounded-lg shadow-xl">
-            <h2 class="text-2xl font-semibold text-gray-900 mb-20">Customer Reviews</h2>
+            <h2 class="text-2xl font-semibold text-gray-900  ">Customer Reviews</h2>
+            <h2 class="text-md  ml-2 text-gray-800 mb-10 mt-2">Comments: {{comments|length}}</h2>
     
             <!-- Existing Reviews -->
             <div class="space-y-6">
-                <!-- Review 1 -->
-                <div class="flex items-start space-x-4 border-t border-gray-300 pt-4">
+                <!-- Review 1 --> 
+                {% for comment in comments %} 
+                <div class="flex items-start space-x-4 border-t border-gray-300 pt-2">
                     <img src="https://via.placeholder.com/40" alt="User Avatar" class="rounded-full w-12 h-12">
-                    <div class="flex-1">
-                        <div class="flex items-center justify-between">
-                            <span class="font-semibold text-gray-800">John Doe</span>
-                            <span class="text-sm text-gray-500">Jan 5, 2025</span>
-                        </div>
-                        <div class="mt-2">
-                            <p class="text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
-                                accumsan eros nec risus placerat, non dictum dui consequat. Quisque non auctor nisi.</p>
-                        </div>
-                        <div class="mt-4 flex items-center space-x-2">
-                            <!-- Rating: Display Stars -->
-                            <span class="text-yellow-500">⭐⭐⭐⭐⭐</span>
-                        </div>
-                        <!-- Like / Unlike Buttons -->
-                        <div class="mt-2 flex space-x-4">
-                            <button class="text-teal-600 hover:text-teal-700 focus:outline-none">Like</button>
-                            <button class="text-red-600 hover:text-red-700 focus:outline-none">Unlike</button>
-                        </div>
-                    </div>
+                        <div class="flex-1">
+                            <div class="flex items-center justify-between">
+                                <span class="font-semibold text-gray-800">{{comment.user.first_name}} {{comment.user.last_name}}</span>
+                                <span class="text-sm text-gray-500">{{comment.created_at}}</span>
+                            </div>
+                            <div class="mt-2">
+                                <p class="text-gray-600">{{comment.content}}</p>
+                            </div>
+                            <div class="mt-4 flex items-center space-x-2">
+                                <!-- Rating: Display Stars -->
+                                <span class="text-yellow-500">⭐⭐⭐⭐⭐</span>
+                            </div>
+                            <!-- Like / Unlike Buttons -->
+                            <div class="mt-2 flex space-x-4">
+                                <button class="text-teal-600 hover:text-teal-700 focus:outline-none">Like</button>
+                                <button class="text-red-600 hover:text-red-700 focus:outline-none">Unlike</button>
+                            </div>
+                        </div> 
                 </div>
-    
-                <!-- Review 2 -->
-                <div class="flex items-start space-x-4 border-t border-gray-300 pt-4">
-                    <img src="https://via.placeholder.com/40" alt="User Avatar" class="rounded-full w-12 h-12">
-                    <div class="flex-1">
-                        <div class="flex items-center justify-between">
-                            <span class="font-semibold text-gray-800">Jane Smith</span>
-                            <span class="text-sm text-gray-500">Dec 30, 2024</span>
-                        </div>
-                        <div class="mt-2">
-                            <p class="text-gray-600">Great book! A must-read for anyone interested in science fiction.
-                                The plot was engaging, and the characters were well-developed. Highly recommend it!</p>
-                        </div>
-                        <div class="mt-4 flex items-center space-x-2">
-                            <!-- Rating: Display Stars -->
-                            <span class="text-yellow-500">⭐⭐⭐⭐⭐</span>
-                        </div>
-                        <!-- Like / Unlike Buttons -->
-                        <div class="mt-2 flex space-x-4">
-                            <button class="text-teal-600 hover:text-teal-700 focus:outline-none">Like</button>
-                            <button class="text-red-600 hover:text-red-700 focus:outline-none">Unlike</button>
-                        </div>
-                    </div>
-                </div>
+                {% endfor %}
+
             </div>
     
             <!-- Add Review Section -->
             <div class="mt-16">
                 <h3 class="text-xl font-semibold text-gray-900 mb-4">Leave a Review</h3>
-                <form action="#" method="POST">
+                <form method="POST">
+                    {% csrf_token %}
                     <div class="space-y-4">
                         <!-- Rating -->
                         <div class="flex items-center space-x-2">
@@ -276,12 +193,8 @@
     
                         <!-- Comment -->
                         <div>
-                            <label for="review" class="block text-gray-700 font-medium">Your Review</label>
-                            <textarea id="review" name="review" rows="4"
-                                class="w-full p-3 border border-gray-300 rounded-md"
-                                placeholder="Write your review here..."></textarea>
-                        </div>
-    
+                            {{comment_form.content}}
+                        </div> 
                         <!-- Submit Button -->
                         <button type="submit"
                             class="px-6 py-3 bg-teal-600 text-white text-lg font-medium rounded-lg shadow-md hover:bg-teal-700 transition duration-300">

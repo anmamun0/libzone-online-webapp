@@ -1,16 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+ 
 
-</head>
-<body>
-
-
+{% extends "base.html"%}
+{% block body%}
    
+
+<div>
 <div class="px-20">
     {% if form.non_field_errors %} {% for error in form.non_field_errors %}
     <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-2" role="alert">
@@ -23,10 +17,11 @@
         <p class="block sm:inline">{{ error }}</p>
     </div>
     {% endfor %} {% endif %}
-    <div class="bg-white px-3 py-4 rounded-xl my-6 mx-12">
-        <h1 class="font-bold text-3xl text-center pb-5">Sign In</h1>
+    <div class="px-3 py-4 rounded-xl my-6 mx-12">
+        <h1 class="font-bold text-3xl text-center pb-5">Registar for a Membership</h1>
+        <p class=" text-gray-700  text-md text-center pb-5">You should student of this University !</p>
         <div class="w-full mt-10">
-            <form method="post" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+            <form method="post" class="bg-white shadow-sm rounded-lg px-20 py-12  pt-20 ">
                 {% csrf_token %} {% for hidden_field in form.hidden_fields %} {{ hidden_field.errors }} {{ hidden_field }} {% endfor %}
                 
                 <div class="flex flex-wrap -mx-3 mb-6">
@@ -145,7 +140,7 @@
                     </div>
                 </div>
                 <div class="flex items-center justify-between">
-                    <button class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                    <button class="w-full bg-blue-400 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
                         Register
                     </button>
                 </div>
@@ -154,6 +149,5 @@
     </div>
 </div>
 
-    
-</body>
-</html>
+</div>
+{% endblock %} 
