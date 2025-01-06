@@ -14,17 +14,17 @@
             <p class="text-gray-500 text-md">{{user.email}}</p>
             <p class="text-gray-500  text-sm">{{user.profile.created_on}}</p>
             <div class="mt-4 flex items-center space-x-4">
-              <div class="bg-teal-500 text-white px-4 py-2 rounded-full">Coins: 150</div>
+              <div class="bg-teal-500 text-white px-4 py-2 rounded-full">Coins: {{user.profile.coin}}</div>
             </div>
           </div>
         </div>
 
         <div class="lg:col-span-5">
           <h3 class="text-xl font-semibold text-gray-800 mb-4">Coin Balance</h3>
-            <p class="text-md text-gray-600">You currently have <span class="font-bold text-teal-500">150 Coins</span> available.</p>
+            <p class="text-md text-gray-600">You currently have <span class="font-bold text-teal-500">{{user.profile.coin}} Coins</span> available.</p>
             <div class="mt-4">
               <button class=" bg-teal-500 text-white text-md px-4 py-3 rounded-full hover:bg-teal-600 transition duration-300">
-                Add Coins
+                <a href="{% url 'deposit' %}">Add Coins</a> 
               </button>
             </div>
         </div>
@@ -100,40 +100,7 @@
             <p class="text-md text-gray-600">You have <span class="font-bold text-teal-500">3 Books</span> pending for return.</p>
           </div>
         </div>
-        
-        <!-- Purchase History Section -->
-        <div class="bg-white p-6 rounded-lg shadow-md">
-          <h3 class="text-xl font-semibold text-gray-800 mb-4">Purchase History</h3>
-          <table class="min-w-full table-auto">
-            <thead>
-              <tr>
-                <th class="px-4 py-2 text-left text-gray-600">Book Title</th>
-                <th class="px-4 py-2 text-left text-gray-600">Date</th>
-                <th class="px-4 py-2 text-left text-gray-600">Price</th>
-              </tr>
-            </thead>
-            <tbody>
-              <!-- Example Purchase 1 -->
-              <tr class="border-t">
-                <td class="px-4 py-2 text-gray-700">The Great Gatsby</td>
-                <td class="px-4 py-2 text-gray-700">2024-12-25</td>
-                <td class="px-4 py-2 text-gray-700">$15</td>
-              </tr>
-              <!-- Example Purchase 2 -->
-              <tr class="border-t">
-                <td class="px-4 py-2 text-gray-700">Introduction to Algorithms</td>
-                <td class="px-4 py-2 text-gray-700">2024-11-10</td>
-                <td class="px-4 py-2 text-gray-700">$30</td>
-              </tr>
-              <!-- Example Purchase 3 -->
-              <tr class="border-t">
-                <td class="px-4 py-2 text-gray-700">Python Programming</td>
-                <td class="px-4 py-2 text-gray-700">2024-10-05</td>
-                <td class="px-4 py-2 text-gray-700">$25</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        {% include 'transactions/transactions_history.html' %}
       </div>
     </div>
   </div>

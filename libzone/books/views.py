@@ -28,7 +28,9 @@ class BookView(TemplateView):
      
 
 from review.forms import CommentForm
-
+from transactions.models import Transaction
+from django.contrib import messages
+from transactions.constants import PURCHASE,RETURN
 class BookDetailsView(FormView):
     template_name = 'book_details.html'
     model = Book
@@ -43,7 +45,7 @@ class BookDetailsView(FormView):
         book = Book.objects.get(pk=book_id)
         context['book'] = book 
         context['related_books'] = Book.objects.all()[:5]
-        
+
         context['similar_category_books'] = []
         for cat in book.category.all():
             some_books = Book.objects.filter(category=cat).exclude(id=book.id)  # Get books in the same category, excluding the current book
@@ -56,18 +58,32 @@ class BookDetailsView(FormView):
     
     def post(self, request, *args, **kwargs):
         form = self.form_class(request.POST)
+        if not request.user.is_authenticated:
+                messages.error(request,"Your should login for review")
+                return redirect('login') 
+        
         book_id = kwargs.get('book_id')
         book = Book.objects.get(pk=book_id)
 
+        profile = self.request.user.profile
+        read = Transaction.objects.filter( profile=profile,  transaction_type__in=[PURCHASE, RETURN], book=book).exists()
+
+        if  not read:
+            messages.error(self.request, "You have not purchased the book. First, buy and read it to leave a review.")
+            # Re-render the page with the current context 
+            return redirect('books_details',book_id=book_id)
+
         if form.is_valid():
             if not request.user.is_authenticated:
-                return redirect('login')
-            # Save the form with additional data
+                return redirect('login') 
             comment = form.save(commit=False)
             comment.user = request.user
             comment.book = book
             comment.save()
-            return redirect('books_details',book_id=book_id)
+            messages.success(request, "Your review has been submitted successfully!")
+            return redirect('books_details', book_id=book_id)
+ 
+        context = self.get_context_data(form=form)
+        return self.render_to_response(context)
 
-        # Redirect back to the book details page
-        return self.get(request, *args, **kwargs)
+ 

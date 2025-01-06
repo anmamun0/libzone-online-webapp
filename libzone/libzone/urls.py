@@ -25,5 +25,6 @@ urlpatterns = [
     path('profile',ProfileView.as_view(),name='profile'),
     path('accounts/',include('accounts.urls')),
     path('books/',include('books.urls')),
+    path('transactions/',include('transactions.urls')),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
