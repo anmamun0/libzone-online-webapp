@@ -124,7 +124,7 @@
           </a>
           {% endfor %}
         </div>
-        <a href="{% url 'filter_category' first_cat.slug%}" class="absolute right-0 left-0  bottom-4 text-blue-500 mt-6 block text-center hover:underline">See More &rarr;</a>
+        <a href="{% if first_cat %} {% url 'filter_category' first_cat.slug%} {% endif %}" class="absolute right-0 left-0  bottom-4 text-blue-500 mt-6 block text-center hover:underline">See More &rarr;</a>
       </div>
 
       <!-- Language Books Section -->
@@ -144,7 +144,7 @@
           </a>
 
           {% endfor %}
-          <a href="{% url 'filter_category' second_cat.slug%}" class="text-blue-500 absolute right-0 left-0  bottom-4   block text-center hover:underline">See
+          <a href="{% if second_cat %} {% url 'filter_category' second_cat.slug %} {% endif %}" class="text-blue-500 absolute right-0 left-0  bottom-4   block text-center hover:underline">See
             More &rarr;</a>
         </div>
       </div>
@@ -167,7 +167,7 @@
 
           {% endfor %}
         </div>
-        <a href="{% url 'filter_category' third_cat.slug%}" class="absolute right-0 left-0  bottom-4 text-blue-500 mt-6 block text-center  hover:underline">See More &rarr;</a>
+        <a href="{% if third_cat %} {% url 'filter_category' third_cat.slug %} {% endif %}" class="absolute right-0 left-0  bottom-4 text-blue-500 mt-6 block text-center  hover:underline">See More &rarr;</a>
       </div>
 
 
@@ -188,7 +188,7 @@
 
           {% endfor %}
         </div>
-        <a href="{% url 'filter_category' four_cat.slug%}" class="absolute right-0 left-0  bottom-4 text-blue-500 mt-6 block text-center hover:underline">See More &rarr;</a>
+        <a href="{% if four_cat %} {% url 'filter_category' four_cat.slug %} {% endif%}" class="absolute right-0 left-0  bottom-4 text-blue-500 mt-6 block text-center hover:underline">See More &rarr;</a>
       </div>
 
     </div>
