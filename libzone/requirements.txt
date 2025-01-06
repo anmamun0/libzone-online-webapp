@@ -24,6 +24,7 @@ decorator
 defusedxml
 distlib
 Django
+djangorestframework  # Add this if you're using DRF
 django-captcha
 django-crispy-forms
 django-environ
@@ -141,4 +142,5 @@ wcwidth
 webcolors
 webencodings
 websocket-client
-widgetsnbextension 
+widgetsnbextension
+gunicorn  # Add if you're deploying to a production environment
