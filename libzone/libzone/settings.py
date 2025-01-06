@@ -11,9 +11,10 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
-
+import dj_database_url
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
 
 import environ
 env = environ.Env()
@@ -95,17 +96,26 @@ WSGI_APPLICATION = 'libzone.wsgi.application'
 #     }
 # }
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': env("DB_NAME"),
-        'USER': env("DB_USER"),
-        'PASSWORD': env("DB_PASSWORD"),
-        'HOST': env("DB_HOST"),
-        'PORT': env("DB_PORT"),
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': env("DB_NAME"),
+#         'USER': env("DB_USER"),
+#         'PASSWORD': env("DB_PASSWORD"),
+#         'HOST': env("DB_HOST"),
+#         'PORT': env("DB_PORT"),
+#     }
+# }
 
+
+# Replace the SQLite DATABASES configuration with PostgreSQL:
+DATABASES = {
+    'default': dj_database_url.config(
+        # Replace this value with your local database's connection string.
+        default='postgresql://libzone_user:GFtnVxcnruFbYCfpoa9aVWpFWWvfdSlo@dpg-ctu3lp23esus739904dg-a.oregon-postgres.render.com/libzone',
+        conn_max_age=600
+    )
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
