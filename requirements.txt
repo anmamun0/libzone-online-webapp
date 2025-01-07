@@ -29,7 +29,7 @@ django-captcha
 django-crispy-forms
 django-environ
 django-recaptcha
-dlib @ file:///C:/Users/almam/Downloads/dlib-19.24.1-cp311-cp311-win_amd64.whl#sha256
+dlib
 env
 et-xmlfile
 executing
