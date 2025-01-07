@@ -32,9 +32,7 @@ django-recaptcha
 dlib
 env
 et-xmlfile
-executing
-face-recognition
-face_recognition_models
+executing 
 fastjsonschema
 filelock
 fonttools
@@ -54,8 +52,7 @@ Jinja2
 json5
 jsonpointer
 jsonschema
-jsonschema-specifications
-jupyter
+jsonschema-specifications 
 jupyter-console
 jupyter-events
 jupyter-lsp

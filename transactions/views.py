@@ -42,6 +42,7 @@ class TransactionCreateMixin(LoginRequiredMixin, CreateView):
         return context
 
 
+from core.constants import send_email
 
 class DepositMoneyView(TransactionCreateMixin):
     form_class = DepositForm
@@ -60,6 +61,11 @@ class DepositMoneyView(TransactionCreateMixin):
                 'coin'
             ]
         ) 
+        context = {
+            'user':self.request.user
+        }
+        body = render_to_string('transactions/deposite_email.html',context)
+        send_email(self.request.user,f"Deposte coin : {coin}",body)
         return super().form_valid(form)
 
 
