@@ -1,7 +1,6 @@
 click==8.1.7
 crispy-bootstrap5==2024.10
-cycler==0.12.1
-DateTime==5.5
+cycler==0.12.1 
 debugpy==1.8.7
 decorator==4.4.2
 defusedxml==0.7.1
