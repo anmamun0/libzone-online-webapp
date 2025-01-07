@@ -38,7 +38,8 @@ EMAIL_USE_SSL = False
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['libzone-app']
+ALLOWED_HOSTS = ["*"]
+CSRF_TRUSTED_ORIGINS = ['https://libzone-app.onrender.com','https://*.127.0.0.1']
 
 
 # Application definition
