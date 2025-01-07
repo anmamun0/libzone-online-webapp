@@ -114,7 +114,7 @@ WSGI_APPLICATION = 'libzone.wsgi.application'
 DATABASES = {
     'default': dj_database_url.config(
         # Replace this value with your local database's connection string.
-        default='postgresql://libzone_n2ik_user:L5H2tDdTAsNyC1enkKSqZvC6nKcAuRij@dpg-ctuo9b23esus739es0vg-a.oregon-postgres.render.com/libzone_n2ik',
+        default='postgresql://libzone_7a8l_user:bSzVe5ehI5wzPsTEaFLoHberuGVAUmZF@dpg-ctuom5ogph6c73e2qh3g-a.oregon-postgres.render.com/libzone_7a8l',
     )
 }
 
