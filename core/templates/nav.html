@@ -16,7 +16,9 @@
                 <!-- User Dropdown (for logged-in users) -->
                 <div class="relative">
                     <button id="user-menu-button" class="flex items-center focus:outline-none focus:ring-0 focus:ring-white focus:ring-offset-0 hover:scale-95">
-                        <img class="h-8 w-8 rounded-full" src="https://via.placeholder.com/150" alt="User Avatar" />
+                        <div class="w-10 h-10 rounded-full bg-gray-600 flex items-center justify-center">
+                            <span class="text-lg text-white uppercase p-2">{{user.first_name|truncatechars:"2"}}</span> <!-- Placeholder for user profile image -->
+                          </div>                    
                     </button>
 
                     <!-- Dropdown menu -->
