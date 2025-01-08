@@ -15,7 +15,7 @@ from core.constants import send_email
 class RegistrationView(FormView):
     template_name = 'accounts/registration.html'
     form_class = RegistraionForm
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('profile')
 
     def dispatch(self, request, *args, **kwargs):
         if request.user.is_authenticated:
@@ -44,7 +44,7 @@ class UserLoginView(LoginView):
 
         messages.success(self.request,"Login successfull.") 
         send_email(self.request.user,"Login Successfull",body)
-        return reverse_lazy('home')
+        return reverse_lazy('profile')
 
 def user_logout(request):
     if request.user.is_authenticated:

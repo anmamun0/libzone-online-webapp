@@ -4,6 +4,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
 from books.models import Book, Category
 from transactions.models import Transaction
+from transactions.constants import RETURN, PURCHASE,DEPOSIT
 
 class HomeView(TemplateView):
     template_name = 'index.html'
@@ -45,4 +46,7 @@ class ProfileView(LoginRequiredMixin,TemplateView):
     def get_context_data(self, **kwargs):
         context  = super().get_context_data(**kwargs)
         context['historys'] = Transaction.objects.filter(profile=self.request.user.profile)
+        context['return'] = Transaction.objects.filter(profile=self.request.user.profile,transaction_type=RETURN).count()
+        context['purchase'] = Transaction.objects.filter(profile=self.request.user.profile,transaction_type__in= [PURCHASE,RETURN]).count()
+        context['pending'] = Transaction.objects.filter(profile=self.request.user.profile,transaction_type=PURCHASE).count()
         return context

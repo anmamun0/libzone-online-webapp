@@ -32,30 +32,28 @@
       
       <!-- Tabs for Navigation -->
       <div class="flex space-x-6 mb-8 text-md font-medium text-gray-600 ">
-        <button class=" text-teal-500 hover:text-teal-700 transition duration-300">
-          Profile Info
-        </button> 
-        <button class=" hover:text-teal-500 transition duration-300">
-          Activities
-        </button>
-        <button class=" hover:text-teal-500 transition duration-300">
-          Borrowed Books
-        </button>
-        <button class=" text-gray-600 hover:text-teal-500 transition duration-300">
-          Purchase History
-        </button>
-        <button class=" text-gray-600 hover:text-teal-500 transition duration-300">
-          Book Requests
-        </button>
-        <button class=" text-gray-600 hover:text-teal-500 transition duration-300">
-          Reservations
-        </button>
+        <button 
+        class="tab-button text-teal-500 hover:text-gray-600 transition duration-300" 
+        onclick="showSection('profile_info', this)">
+        Activities
+      </button> 
+      <button 
+        class="tab-button text-gray-600 hover:text-teal-500 transition duration-300" 
+        onclick="showSection('add_to_card', this)">
+        Add to Card
+      </button>
+      <button 
+        class="tab-button text-gray-600 hover:text-teal-500 transition duration-300" 
+        onclick="showSection('history', this)">
+        History
+      </button> 
       </div>
+ 
       
       <!-- Profile Content -->
-      <div>
+      <div id="profile_info" class="profile_Section">
         <!-- Personal Info Section -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-8">
+        <div  class="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-8">
           <div class="bg-gray-100 p-6 rounded-lg shadow-md">
             <h3 class="text-xl font-semibold text-gray-800 mb-4">Personal Information</h3>
             <ul class="space-y-4 text-md">
@@ -85,24 +83,69 @@
           <!-- Books Purchased Section -->
           <div class="bg-gray-100 p-6 rounded-lg shadow-md">
             <h3 class="text-xl font-semibold text-gray-800 mb-4">Books Purchased</h3>
-            <p class="text-md text-gray-600">You have purchased <span class="font-bold text-teal-500">12 Books</span> so far.</p>
+            <p class="text-md text-gray-600">You have purchased <span class="font-bold text-teal-500">{{purchase}} Books</span> so far.</p>
           </div>
           
           <!-- Books Returned Section -->
           <div class="bg-gray-100 p-6 rounded-lg shadow-md">
             <h3 class="text-xl font-semibold text-gray-800 mb-4">Books Returned</h3>
-            <p class="text-md text-gray-600">You have returned <span class="font-bold text-teal-500">5 Books</span>.</p>
+            <p class="text-md text-gray-600">You have returned <span class="font-bold text-teal-500">{{return}} Books</span>.</p>
           </div>
           
           <!-- Books Pending for Return Section -->
           <div class="bg-gray-100 p-6 rounded-lg shadow-md">
             <h3 class="text-xl font-semibold text-gray-800 mb-4">Books Pending for Return</h3>
-            <p class="text-md text-gray-600">You have <span class="font-bold text-teal-500">3 Books</span> pending for return.</p>
+            <p class="text-md text-gray-600">You have <span class="font-bold text-teal-500">{{pending}} Books</span> pending for return.</p>
           </div>
-        </div>
-        {% include 'transactions/transactions_history.html' %}
-      </div>
+        </div>  
     </div>
+
+    <div class="profile_Section hidden mb-8 py-12"  id="history" > 
+      <h3 class="text-xl font-semibold text-gray-800 mb-4 text-center">List of all History </h3>
+
+      {% include 'transactions/transactions_history.html' %}
+    </div>
+
+    <div  class="profile_Section hidden  mb-8 py-12"  id="add_to_card"> 
+      <h3 class="text-xl font-semibold text-gray-800 mb-4 text-center">Card List</h3>
+
+    </div>
+
+
   </div>
+ 
+   
+  
+  <script>
+    function showSection(sectionId, button) {
+    // Hide all sections
+    document.querySelectorAll('.profile_Section').forEach((section) => {
+      section.classList.add('hidden');
+    });
+
+    // Show the clicked section
+    document.getElementById(sectionId).classList.remove('hidden');
+
+    // Remove 'active' styles from all buttons
+    document.querySelectorAll('.tab-button').forEach((btn) => {
+      btn.classList.remove('text-teal-500', );
+      btn.classList.add('text-gray-600');
+    });
+
+    // Add 'active' styles to the clicked button
+    button.classList.remove('text-gray-600');
+    button.classList.add('text-teal-500',);
+  }
+  </script>
+   
+  
   
 {%endblock %}
+
+
+
+
+
+
+
+ 
