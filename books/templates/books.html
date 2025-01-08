@@ -135,7 +135,7 @@
               <div
                 class="absolute inset-0 flex flex-col justify-center items-center text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <div class="text-center">
-                  <button class="add-to-cart-btn text-md px-4 py-2 w-full font-semibold bg-teal-600 text-white hover:bg-teal-700 transition duration-300" data-profile-url="{% url 'profile' %}">
+                  <button class="add-to-cart-btn text-md px-4 py-2 w-full font-semibold bg-teal-600 text-white hover:bg-teal-700 transition duration-300"  data-profile-url="{% if user.is_authenticated %} {% url 'profile' %} {% else %} {% url 'login' %} {% endif%} " >
                     Add to Cart
                   </button>
                   
