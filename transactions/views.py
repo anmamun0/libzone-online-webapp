@@ -118,3 +118,9 @@ class ReturnBookView(TransactionCreateMixin, View):
     
         return redirect('books_details', book_id=main_book.id)  # Redirect to book details page
    
+ADD_TO_CARD = 4
+def add_card_view(self):
+    profile = self.request.user.profile
+    list_card = Transaction.objects.filter(profile=profile,transaction_type=ADD_TO_CARD)
+    
+
