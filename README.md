@@ -34,18 +34,35 @@ LibZone is a powerful, user-friendly system tailored to meet the dynamic needs o
 
 ## 🛠️ Tech Stack
 
-- **Backend:** Python, Django Framework
-- **Frontend:** HTML, CSS, Bootstrap
-- **Database:** PostgreSQL / SQLite
-- **Version Control:** Git, GitHub
+- **Backend:** <code> Python </code>,  <code>Django Framework</code>
+- **Frontend:** <code>HTML</code>, <code>CSS</code>, <code>Tailwindcss</code>, <code>Javascript</code>
+- **Database:** <code>PostgreSQL</code> , <code>SQLite</code>
+- **Version Control:** <code>Git</code>, <code>GitHub</code>
+
+
+
+
+
+## 📸 Screenshots  
+
+Here are some key pages of the application:  
+
+| **Book details Page**               | **Books Page**             | 
+|------------------------------|---------------------------------| 
+| ![Home Page](https://github.com/anmamun0/libzone-online-webapp/blob/main/core/static/libZone_webapp_2.png) | ![User Dashboard](https://github.com/anmamun0/libzone-online-webapp/blob/main/core/static/libZone_webapp_1.png) |
+
+ 
+| **Profile Page**               | **Transaction History Page**             | 
+|------------------------------|---------------------------------| 
+| ![Home Page](https://github.com/anmamun0/libzone-online-webapp/blob/main/core/static/libZone_webapp_3.png) | ![User Dashboard](https://github.com/anmamun0/libzone-online-webapp/blob/main/core/static/libZone_webapp_4.png) |
+
+
+--- 
+
+ 
 
 ## 🚦 Installation Guide
-
-### Prerequisites
-1. Python (version 3.8 or higher)
-2. Django (version 4.x or higher)
-3. PostgreSQL (optional; SQLite is included by default)
-4. Git
+ 
 
 ### Steps
 1. Clone the repository:
